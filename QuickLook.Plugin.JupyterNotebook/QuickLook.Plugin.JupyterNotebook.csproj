@@ -49,6 +49,7 @@
     <Compile Include="Helper.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\GitVersion.cs" />
     <Compile Include="WebpagePanel.cs" />
     <Compile Include="WpfWebBrowserWrapper.cs" />
   </ItemGroup>
@@ -76,4 +77,16 @@
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>powershell -noprofile -File "$(SolutionDir)Scripts\pack-zip.ps1" -Project $(ProjectName) -SolutionDir "$(SolutionDir) " -TargetDir "$(TargetDir) "
+
+REM the spaces before the second quotes are necessary
+REM because PowerShell uses the last "\" as escape!</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>powershell -noprofile -File "$(SolutionDir)Scripts\update-version.ps1" -ProjectDir "$(ProjectDir) " -SolutionDir "$(SolutionDir) " -TargetDir "$(TargetDir) "
+
+REM the spaces before the second quotes are necessary
+REM because PowerShell uses the last "\" as escape!</PreBuildEvent>
+  </PropertyGroup>
 </Project>
