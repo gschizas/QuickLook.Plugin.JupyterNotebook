@@ -61,8 +61,11 @@ namespace QuickLook.Plugin.JupyterNotebook
 
         private string ConvertNotebookToHtml(string path)
         {
+            // if output already exists, just show that
+            // maybe do some cleanup first
+            Debug.WriteLine(QuickLook.Common.Helpers.SettingHelper.LocalDataPath);
             var outputFilename = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".html";
-            var exePath = @"C:\Program Files\Python37\Scripts\pipenv.exe";
+            var exePath = @"pipenv.exe";
             var directory = System.IO.Path.GetDirectoryName(path);
 
             var paramsBuilder = new StringBuilder();
