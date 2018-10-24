@@ -1,6 +1,12 @@
-Remove-Item ..\QuickLook.Plugin.JupyterNotebook.qlplugin -ErrorAction SilentlyContinue
-$config = "Release"
+param(
+	[string] $Project,
+	[string] $SolutionDir,
+	[string] $TargetDir)
 
-$files = Get-ChildItem -Path "..\QuickLook.Plugin.JupyterNotebook\bin\$config\" -Exclude *.pdb,*.xml
-Compress-Archive $files ..\QuickLook.Plugin.JupyterNotebook.zip
-Move-Item ..\QuickLook.Plugin.JupyterNotebook.zip ..\QuickLook.Plugin.JupyterNotebook.qlplugin
+$SolutionDir = $SolutionDir.Trim()
+$TargetDir = $TargetDir.Trim()
+
+Remove-Item "$($SolutionDir)\$($Project).qlplugin" -ErrorAction SilentlyContinue
+$files = Get-ChildItem -Path "$TargetDir" -Exclude *.pdb,*.xml
+Compress-Archive $files "$($SolutionDir)\$($Project).zip"
+Move-Item "$($SolutionDir)\$($Project).zip" "$($SolutionDir)\$($Project).qlplugin"
