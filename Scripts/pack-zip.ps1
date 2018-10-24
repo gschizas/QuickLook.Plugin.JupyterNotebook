@@ -1,5 +1,5 @@
 Remove-Item ..\QuickLook.Plugin.JupyterNotebook.qlplugin -ErrorAction SilentlyContinue
-$config="Debug"
+$config = "Release"
 
 $files = Get-ChildItem -Path "..\QuickLook.Plugin.JupyterNotebook\bin\$config\" -Exclude *.pdb,*.xml
 Compress-Archive $files ..\QuickLook.Plugin.JupyterNotebook.zip
