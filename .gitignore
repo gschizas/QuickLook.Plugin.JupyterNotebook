@@ -331,3 +331,5 @@ ASALocalRun/
 /*.qlplugin
 /GitVersion.cs
 /QuickLook.Plugin.Metadata.config
+QuickLook.Plugin.JupyterNotebook/QuickLook.Plugin.Metadata.config
+QuickLook.Plugin.JupyterNotebook/Properties/GitVersion.cs
